@@ -183,7 +183,7 @@ class GeomagicDevice:
 
     def get_jaw_angle(self):
         if self.gripper_button_pressed:
-            return 0.0
+            return 0.05
         else:
             return 0.3
 

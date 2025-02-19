@@ -77,7 +77,7 @@ class PSM:
         self.simulation_manager = simulation_manager
         self.name = name
         self.base = self.simulation_manager.get_obj_handle(self.name + '/baselink', required=True) 
-        self.tool_id_body = self.simulation_manager.get_obj_handle(name + '/tool_id', required=True)
+        self.tool_id_body = self.simulation_manager.get_obj_handle(name + '/tool_id/420006', required=True)
 
         if detect_tool_id:
             self.tool_id = self.get_tool_id()
@@ -94,10 +94,10 @@ class PSM:
         self.palm_joint_IK = self.simulation_manager.get_obj_handle(name + '_palm_joint_ik')
         self.target_FK = self.simulation_manager.get_obj_handle(name + '_target_fk')
 
-        self.left_finger_ghost = self.simulation_manager._client.get_obj_handle(name + '/left_finger_ghost')
-        self.right_finger_ghost = self.simulation_manager._client.get_obj_handle(name + '/right_finger_ghost')
+        self.left_finger_ghost = self.simulation_manager._client.get_obj_handle("/ambf/env/ghosts/"+name + '/left_finger_ghost')
+        self.right_finger_ghost = self.simulation_manager._client.get_obj_handle("/ambf/env/ghosts/"+name + '/right_finger_ghost')
         self.actuators = []
-        self.actuators.append(self.simulation_manager._client.get_obj_handle(name + '/Actuator0'))
+        self.actuators.append(self.simulation_manager._client.get_obj_handle("/ambf/env/ghosts/"+name + '/Actuator0'))
         time.sleep(0.5)
         self.grasped = [False, False, False]
         self.graspable_objs_prefix = ["Needle", "Thread", "Puzzle"]

@@ -64,7 +64,7 @@ class SimulationManager:
         self._client.connect()
 
     def get_obj_handle(self, name, required: bool= False)->SimulationObject:
-        ambf_object = self._client.get_obj_handle(name)
+        ambf_object = self._client.get_obj_handle("/ambf/env/"+name)
         
         if required and ambf_object is None:
             raise RuntimeError(f"SimulationObject {name} is required not found in the simulation")
